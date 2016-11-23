@@ -15,7 +15,7 @@ class MutationBuilder implements BuilderInterface
 {
     use BuilderTrait;
 
-    public function build() : string
+    public function build()
     {
         return sprintf('mutation {%s}', $this->name . $this->arguments . $this->body);
     }

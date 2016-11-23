@@ -17,5 +17,5 @@ interface BuilderInterface
 
     public function body(array $body);
 
-    public function build() : string;
+    public function build();
 }
