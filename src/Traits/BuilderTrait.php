@@ -24,6 +24,10 @@ trait BuilderTrait
 
     protected $bodyPrototype = [];
 
+    protected $enums;
+
+    protected $values = [];
+
     /**
      * @param string $name
      *
@@ -51,7 +55,18 @@ trait BuilderTrait
             $this->arguments = $this->replacePlaceholders(sprintf('(%s)', trim(json_encode($arguments), '{}')));
         }
 
+        $this->processEnums();
+
         return $this;
+    }
+
+    protected function processEnums()
+    {
+        foreach ($this->values as $value) {
+            if($value === strtoupper($value)) {
+                $this->arguments = str_replace(sprintf('"%s"', $value), $value, $this->arguments);
+            }
+        }
     }
 
     /**
@@ -81,6 +96,8 @@ trait BuilderTrait
 
             if (is_array($argumentValue)) {
                 $this->processArgumentsNames($argumentValue);
+            } else {
+                $this->values[] = $argumentValue;
             }
         }
     }
