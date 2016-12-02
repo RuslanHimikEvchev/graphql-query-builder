@@ -63,7 +63,7 @@ trait BuilderTrait
     protected function processEnums()
     {
         foreach ($this->values as $value) {
-            if($value === strtoupper($value)) {
+            if($value === strtoupper($value) && strpos($value, 'ENUM_') !== false) {
                 $this->arguments = str_replace(sprintf('"%s"', $value), $value, $this->arguments);
             }
         }
