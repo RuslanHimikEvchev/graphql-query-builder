@@ -1,8 +1,7 @@
 {
-  "name": "himik/simple-graphql-query-builder",
+  "name": "himik/graphql-query-builder",
   "description": "Provide simple api to build graphql mutation query",
   "minimum-stability": "stable",
-  "license": "proprietary",
   "authors": [
     {
       "name": "Ruslan Evchev",
