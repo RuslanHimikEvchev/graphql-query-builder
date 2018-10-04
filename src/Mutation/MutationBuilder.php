@@ -20,4 +20,22 @@ class MutationBuilder implements BuilderInterface
         return sprintf('mutation {%s}', $this->name . $this->arguments . $this->body);
     }
 
+    /**
+     * @param array $arguments
+     *
+     * @return MutationBuilder $this
+     */
+    public function arguments(array $arguments)
+    {
+        if (empty($this->arguments)) {
+            $this->processArgumentsNames($arguments);
+
+            $this->arguments = $this->replacePlaceholders(sprintf('(input:{%s})', substr(json_encode($arguments, JSON_UNESCAPED_SLASHES), 1, strlen(json_encode($arguments, JSON_UNESCAPED_SLASHES)) - 2)));
+        }
+
+        $this->processEnums();
+
+        return $this;
+    }
+
 }
