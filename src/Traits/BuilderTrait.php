@@ -52,7 +52,7 @@ trait BuilderTrait
         if (empty($this->arguments)) {
             $this->processArgumentsNames($arguments);
 
-            $this->arguments = $this->replacePlaceholders(sprintf('(%s)', substr(json_encode($arguments), 1, strlen(json_encode($arguments)) - 2)));
+            $this->arguments = $this->replacePlaceholders(sprintf('(%s)', substr(json_encode($arguments, JSON_UNESCAPED_SLASHES), 1, strlen(json_encode($arguments, JSON_UNESCAPED_SLASHES)) - 2)));
         }
 
         $this->processEnums();
